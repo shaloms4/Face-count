@@ -10,7 +10,7 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Face Count",
+          "",
           style: TextStyle(
             fontFamily: 'ClickerScript',
             color: Colors.black,
