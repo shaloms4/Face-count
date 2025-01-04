@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> _uploadImageAndGetFaceCount() async {
     if (_image == null) return;
 
-    final uri = Uri.parse('http:// :5000/count_faces');
+    final uri = Uri.parse('https://12d8-196-189-127-253.ngrok-free.app/count_faces');
     final request = http.MultipartRequest('POST', uri)
       ..files.add(await http.MultipartFile.fromPath('image', _image!.path));
 

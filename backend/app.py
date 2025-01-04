@@ -88,7 +88,7 @@ def count_faces():
         face_count = face_detector.count_faces(image_path)
 
         # Clean up uploaded file
-        # os.remove(image_path)
+        os.remove(image_path)
 
         # Return the response with the face count
         return jsonify({'face_count': face_count}), 200
