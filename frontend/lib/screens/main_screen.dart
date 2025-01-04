@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -39,26 +38,64 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> _uploadImageAndGetFaceCount() async {
     if (_image == null) return;
 
+    // Show loader
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+          ),
+        );
+      },
+    );
+
     final uri = Uri.parse('https://12d8-196-189-127-253.ngrok-free.app/count_faces');
     final request = http.MultipartRequest('POST', uri)
       ..files.add(await http.MultipartFile.fromPath('image', _image!.path));
 
-    final response = await request.send();
+    try {
+      final response = await request.send();
+      Navigator.pop(context); // Remove the loader
 
-    if (response.statusCode == 200) {
-      final result = await response.stream.bytesToString();
-      final jsonResponse = json.decode(result);
-      final faceCount = jsonResponse['face_count'];
+      if (response.statusCode == 200) {
+        final result = await response.stream.bytesToString();
+        final jsonResponse = json.decode(result);
+        final faceCount = jsonResponse['face_count'];
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResultPage(faceCount: faceCount),
-        ),
-      );
-    } else {
-      print("Failed to upload image");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultPage(faceCount: faceCount),
+          ),
+        );
+      } else {
+        _showErrorDialog("Failed to upload image");
+      }
+    } catch (e) {
+      Navigator.pop(context); // Remove the loader
+      _showErrorDialog("An error occurred. Please try again.");
     }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error", style: TextStyle(color: Colors.black)),
+          content: Text(message, style: const TextStyle(color: Colors.black)),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK", style: TextStyle(color: Colors.black)),
+            ),
+          ],
+          backgroundColor: Colors.white,
+        );
+      },
+    );
   }
 
   @override
@@ -67,10 +104,13 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         title: const Text(
           "Count It",
-          style: TextStyle(                      fontFamily: 'ClickerScript',
-color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+          style: TextStyle(
+            fontFamily: 'ClickerScript',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
         ),
-
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -81,14 +121,15 @@ color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
                 context: context,
                 applicationName: "How to use Count It",
                 children: [
-                  const Text("This app detects and counts faces in images. You can either upload an image from your gallery or take a photo using the camera. Click on the 'Upload Image' button to select an image from your gallery, or click on the 'Take Now' button to take a photo. Once the image is selected or taken, the app will count the faces in the image and display the result."),
+                  const Text(
+                    "This app detects and counts faces in images. You can either upload an image from your gallery or take a photo using the camera. Click on the 'Upload Image' button to select an image from your gallery, or click on the 'Take Now' button to take a photo. Once the image is selected or taken, the app will count the faces in the image and display the result.",
+                  ),
                 ],
               );
             },
           ),
         ],
       ),
-
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
