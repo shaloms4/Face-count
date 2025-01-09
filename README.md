@@ -1,6 +1,6 @@
 # Face-Count App
 
-Face-Count is a simple app that uses the MTCNN model for face detection and counting. The backend is built with Flask, and the frontend is developed using Flutter. Since the backend doesn't run continuously, it will be hosted locally. This README provides step-by-step instructions for setting up and running the project on your local machine.
+Face-Count is a simple app that uses the **MTCNN** (Multi-task Cascaded Convolutional Networks) model for face detection and counting. The backend is built with Flask, and the frontend is developed using Flutter. Since the backend doesn't run continuously, it will be hosted locally. This README provides step-by-step instructions for setting up and running the project on your local machine.
 
 ## Course Information
 
