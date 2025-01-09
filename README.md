@@ -7,11 +7,11 @@ Face-Count is a simple app that uses the **MTCNN** (Multi-task Cascaded Convolut
 This app was created as part of the "Programming for AI" course.
 
 ### Group Members:
-- Eyob Derese ------------------------------------------------------ UGR/6771/14
 - Elizabet Yonas ---------------------------------------------------- UGR/6912/14
-- Ruhama Yohannes ----------------------------------------------- UGR/7382/14
+- Eyob Derese ------------------------------------------------------ UGR/6771/14
 - Ruth Alemfanta -------------------------------------------------- UGR/7679/14
-- Shalom Habtamu ------------------------------------------------ UGR/6901/14
+- Ruhama Yohannes ---------------------------------------------- UGR/7382/14
+- Shalom Habtamu ----------------------------------------------- UGR/6901/14
 - Yordanos Melaku ------------------------------------------------ UGR/8211/14
 
 ### Special Thanks:
