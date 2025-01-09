@@ -39,6 +39,7 @@ Open a terminal (Command Prompt, PowerShell, or any preferred terminal) and run 
 
 ```bash
 git clone https://github.com/shaloms4/Face-count
+```
 
 ### 2. Navigate to the Project Directory
 
@@ -46,6 +47,7 @@ Change your directory to the cloned repository:
 
 ```bash
 cd Face-count
+```
 
 ### 3. Open the Project in an IDE
 
@@ -53,6 +55,7 @@ To open the project in Visual Studio Code, run:
 
 ```bash
 code .
+```
 
 ### 4. Set Up the Backend
 
@@ -60,9 +63,11 @@ Navigate to the backend directory:
 
 ```bash
 cd backend
+```
 ```bash
 pip install -r requirements.txt
 python app.py
+```
 
 ### 5. Set Up the Frontend
 
@@ -70,8 +75,10 @@ Open a new terminal and navigate to the frontend directory:
 
 ```bash
 cd frontend
+```
 ```bash
 flutter pub get
+```
 
 ### 6. Update the Backend Link in the Frontend
 
@@ -79,6 +86,7 @@ In the `frontend/lib/screens/main_screen.dart` file, locate line 54 and replace 
 
 ```bash
 ipconfig
+```
 The link should look like:
 http://192.x.x.x:5000/count_faces
 
@@ -88,6 +96,7 @@ Run the Flutter app on your connected phone or emulator:
 
 ```bash
 flutter run
+```
 
 ## Using the App
 
